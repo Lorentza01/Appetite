@@ -12,94 +12,346 @@ html{scroll-behavior:smooth}
 body{margin:0;background:#000;color:#fff;font-family:"DM Sans",Arial,sans-serif;font-weight:300}
 img{display:block;max-width:100%}
 a{color:inherit}
-.serif,h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:400}
+h1,h2,h3,.serif{font-family:"Playfair Display",Georgia,serif;font-weight:400}
+.wrap{width:min(92%,1450px);margin:auto}
 
 /* HERO */
 .hero{
   min-height:100svh;
   background:url("Header%20Image.png") center 35%/cover no-repeat;
-  position:relative;display:flex;align-items:center;justify-content:center;text-align:center;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.12) 55%,rgba(0,0,0,.7))}
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.12) 55%,rgba(0,0,0,.72));
+}
 .hero-inner{position:relative;z-index:1;margin-top:28vh}
-.hero h1{font-size:clamp(64px,10vw,150px);line-height:.85;margin:0 0 24px;letter-spacing:-.045em}
-.button{display:inline-block;border:1px solid #fff;padding:18px 52px;text-decoration:none;font-size:20px}
+.hero h1{
+  font-size:clamp(64px,10vw,150px);
+  line-height:.86;
+  margin:0 0 22px;
+  letter-spacing:-.045em;
+}
+.button{
+  display:inline-block;
+  border:1px solid #fff;
+  padding:17px 48px;
+  text-decoration:none;
+  font-size:19px;
+  transition:.2s ease;
+}
+.button:hover{background:#fff;color:#000}
 
-/* GENERAL */
-.section-title{font-size:clamp(48px,6vw,92px);line-height:.95;letter-spacing:-.045em;margin:0}
-.wrap{width:min(92%,1450px);margin:auto}
+/* SMALL SECTION HEADINGS */
+.section-kicker{
+  font-size:clamp(34px,3.5vw,56px);
+  line-height:1;
+  letter-spacing:-.035em;
+  text-align:center;
+  margin:0;
+}
 
 /* TRAILER */
-.trailer{padding:90px 0 110px}
-.trailer .section-title{text-align:center;margin-bottom:42px}
-.video{width:min(100%,1100px);aspect-ratio:16/9;margin:auto}
-.video iframe{width:100%;height:100%;border:0}
+.trailer{padding:46px 0 84px}
+.trailer .section-kicker{margin-bottom:22px}
+.video{
+  width:min(100%,1100px);
+  aspect-ratio:16/9;
+  margin:auto;
+  overflow:hidden;
+  background:#111;
+}
+.video iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
 
 /* ABOUT */
-.about-title{width:min(92%,1450px);margin:0 auto 45px}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;min-height:850px}
-.about-copy{padding:20px 7vw 80px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.about-copy .torn{width:min(85%,560px);margin-bottom:55px}
-.tagline{font-family:"Playfair Display",Georgia,serif;font-size:clamp(28px,2.5vw,44px);line-height:1.25;margin:0 0 42px}
-.about-copy p{font-size:clamp(16px,1.25vw,21px);line-height:1.55;max-width:650px;margin:0 0 28px}
-.about-photo{width:100%;height:100%;object-fit:cover;object-position:center}
+.about{padding:14px 0 100px}
+.about .section-kicker{margin-bottom:42px}
+.about-grid{
+  width:min(94%,1450px);
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7vw;
+  align-items:start;
+}
+.about-copy{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.about-copy .torn{
+  width:min(82%,560px);
+  margin-bottom:42px;
+}
+.tagline{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(26px,2.3vw,42px);
+  line-height:1.3;
+  margin:0 0 34px;
+}
+.about-copy p{
+  font-size:clamp(16px,1.18vw,20px);
+  line-height:1.6;
+  max-width:650px;
+  margin:0 0 25px;
+}
+.about-visual{
+  display:flex;
+  justify-content:center;
+  padding-top:58px;
+}
+.hands-frame{
+  width:min(88%,620px);
+  height:min(72vh,760px);
+  overflow:hidden;
+  position:relative;
+}
+.hands-frame img{
+  width:100%;
+  height:118%;
+  object-fit:cover;
+  object-position:center;
+  transform:translateY(-5%);
+  will-change:transform;
+}
 
-/* CONCEPT */
-.concept{padding:100px 4vw}
-.concept .section-title{text-align:center;margin-bottom:55px}
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:22px;width:min(100%,1400px);margin:auto}
-.gallery img{width:100%;height:100%;object-fit:cover}
+/* CONCEPT ART */
+.concept{padding:58px 0 100px}
+.concept .section-kicker{margin-bottom:34px}
+.carousel-shell{
+  overflow:hidden;
+  width:100%;
+  position:relative;
+}
+.carousel{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  cursor:grab;
+  user-select:none;
+  padding:0 4vw 18px;
+  scrollbar-width:none;
+}
+.carousel::-webkit-scrollbar{display:none}
+.carousel:active{cursor:grabbing}
+.carousel img{
+  flex:0 0 min(68vw,760px);
+  height:min(72vh,720px);
+  object-fit:cover;
+  background:#111;
+  pointer-events:none;
+}
 
-/* HELP */
-.help{padding:100px 0 140px;width:min(88%,1100px);margin:auto}
-.help .section-title{text-align:center;margin-bottom:65px}
-.help-row{display:grid;grid-template-columns:110px 1fr;border-top:1px solid #777;padding:22px 0 30px;align-items:start}
-.help-row:last-child{border-bottom:1px solid #777}
-.num{font-family:"Playfair Display",Georgia,serif;font-size:58px;line-height:1}
-.help-text{font-family:"Playfair Display",Georgia,serif;font-size:clamp(28px,3vw,48px);line-height:1.05}
-.help-text a{text-underline-offset:5px}
+/* WANT TO HELP */
+.help{padding:70px 0 125px}
+.help .section-kicker{margin-bottom:42px}
+.help-grid{
+  width:min(92%,1250px);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+.help-card{
+  border:1px solid rgba(255,255,255,.35);
+  padding:30px 30px 34px;
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.help-card h3{
+  font-size:clamp(30px,3vw,48px);
+  line-height:1.05;
+  margin:0 0 20px;
+}
+.help-card p{
+  margin:0;
+  font-size:17px;
+  line-height:1.5;
+  color:rgba(255,255,255,.8);
+}
+.help-card a{
+  text-decoration:none;
+}
+.help-card.link:hover{
+  background:#fff;
+  color:#000;
+}
+.help-card.link:hover p{color:#000}
 
-/* PRODUCTION / FOOTER */
-.production{min-height:900px;padding:70px 3vw 50px;display:grid;grid-template-columns:1fr 1.7fr;grid-template-rows:auto 1fr auto;column-gap:6vw}
-.team-photo{width:100%;max-width:620px;align-self:start}
-.production-copy{padding-top:60px;max-width:750px}
-.production-copy h2{font-size:clamp(58px,6vw,100px);line-height:.78;letter-spacing:-.055em;margin:0 0 42px}
-.production-copy p{font-size:clamp(17px,1.35vw,22px);line-height:1.55;margin:0}
-.stay{grid-column:1/2;align-self:end;font-size:clamp(58px,6vw,100px);line-height:.85;letter-spacing:-.055em;margin:0}
-.links{grid-column:2/3;align-self:end;font-size:17px;line-height:2}
-.links a{display:block;width:max-content;text-underline-offset:4px}
+/* PRODUCTION */
+.production{
+  min-height:860px;
+  padding:70px 3vw 50px;
+  display:grid;
+  grid-template-columns:1fr 1.7fr;
+  grid-template-rows:auto 1fr auto;
+  column-gap:6vw;
+}
+.team-photo{
+  width:100%;
+  max-width:620px;
+  align-self:start;
+}
+.production-copy{
+  padding-top:52px;
+  max-width:760px;
+}
+.production-copy h2{
+  font-size:clamp(58px,6vw,100px);
+  line-height:.92;
+  letter-spacing:-.055em;
+  margin:0 0 38px;
+}
+.production-copy p{
+  font-size:clamp(17px,1.35vw,22px);
+  line-height:1.6;
+  margin:0;
+}
+.stay{
+  grid-column:1/2;
+  align-self:end;
+  font-size:clamp(58px,6vw,100px);
+  line-height:.9;
+  letter-spacing:-.055em;
+  margin:0;
+}
+.links{
+  grid-column:2/3;
+  align-self:end;
+  font-size:17px;
+  line-height:2;
+}
+.links a{
+  display:block;
+  width:max-content;
+  text-underline-offset:4px;
+}
 .links .plain{display:block}
 
 /* MOBILE */
 @media(max-width:760px){
-  .hero{min-height:92svh;background-position:center top}
+  .hero{
+    min-height:92svh;
+    background-position:center top;
+  }
   .hero-inner{margin-top:32vh}
   .hero h1{font-size:68px;margin-bottom:18px}
   .button{font-size:17px;padding:15px 38px}
-  .trailer{padding:55px 0 75px}
-  .trailer .section-title{font-size:48px;margin-bottom:28px}
-  .about-title{font-size:52px;margin-bottom:30px}
-  .about-grid{display:flex;flex-direction:column;min-height:0}
-  .about-copy{padding:0 7vw 55px}
-  .about-copy .torn{width:88%;margin-bottom:35px}
-  .tagline{font-size:28px;margin-bottom:35px}
-  .about-copy p{font-size:17px;line-height:1.55;margin-bottom:26px}
-  .about-photo{height:auto;max-height:none}
-  .concept{padding:65px 5vw}
-  .concept .section-title{font-size:52px;margin-bottom:25px}
-  .gallery{grid-template-columns:1fr;gap:16px}
-  .help{padding:60px 0 95px}
-  .help .section-title{font-size:54px;margin-bottom:45px}
-  .help-row{grid-template-columns:82px 1fr;padding:16px 0 24px}
-  .num{font-size:46px}
-  .help-text{font-size:30px}
-  .production{min-height:0;padding:50px 6vw 80px;display:flex;flex-direction:column}
-  .production-copy{order:1;padding:0 0 40px}
-  .production-copy h2{font-size:58px;margin-bottom:28px}
+
+  .trailer{padding:28px 0 58px}
+  .section-kicker{font-size:38px}
+  .trailer .section-kicker{margin-bottom:16px}
+
+  .about{padding:0 0 65px}
+  .about .section-kicker{margin-bottom:28px}
+  .about-grid{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .about-copy{
+    padding:0 5vw 38px;
+  }
+  .about-copy .torn{
+    width:88%;
+    margin-bottom:32px;
+  }
+  .tagline{
+    font-size:28px;
+    margin-bottom:32px;
+  }
+  .about-copy p{
+    font-size:17px;
+    line-height:1.56;
+    margin-bottom:24px;
+  }
+  .about-visual{
+    padding-top:0;
+  }
+  .hands-frame{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+  }
+  .hands-frame img{
+    width:100%;
+    height:auto;
+    transform:none !important;
+  }
+
+  .concept{padding:38px 0 70px}
+  .concept .section-kicker{margin-bottom:24px}
+  .carousel{
+    gap:14px;
+    padding:0 5vw 12px;
+  }
+  .carousel img{
+    flex-basis:84vw;
+    height:auto;
+    max-height:none;
+  }
+
+  .help{padding:48px 0 86px}
+  .help .section-kicker{margin-bottom:28px}
+  .help-grid{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  .help-card{
+    min-height:0;
+    padding:24px;
+  }
+  .help-card h3{
+    font-size:34px;
+    margin-bottom:10px;
+  }
+  .help-card p{
+    font-size:16px;
+  }
+
+  .production{
+    min-height:0;
+    padding:48px 6vw 80px;
+    display:flex;
+    flex-direction:column;
+  }
+  .production-copy{
+    order:1;
+    padding:0 0 36px;
+  }
+  .production-copy h2{
+    font-size:58px;
+    line-height:1.02;
+    margin-bottom:25px;
+  }
   .production-copy p{font-size:17px}
-  .team-photo{order:2;margin-bottom:75px}
-  .stay{order:3;font-size:58px;margin-bottom:42px}
-  .links{order:4;font-size:17px}
+  .team-photo{
+    order:2;
+    margin-bottom:70px;
+  }
+  .stay{
+    order:3;
+    font-size:58px;
+    margin-bottom:38px;
+  }
+  .links{
+    order:4;
+    font-size:17px;
+  }
 }
 </style>
 </head>
@@ -113,14 +365,19 @@ a{color:inherit}
 </header>
 
 <section class="trailer wrap">
-  <h2 class="section-title">Watch Our Teaser</h2>
+  <h2 class="section-kicker">Watch Our Teaser</h2>
   <div class="video">
-    <iframe src="https://www.youtube.com/embed/mewzo3Dq-bE?start=2" title="Appetite teaser" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe
+      src="https://www.youtube.com/embed/mewzo3Dq-bE?start=2&rel=0&modestbranding=1&playsinline=1"
+      title="Appetite teaser"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
   </div>
 </section>
 
-<section>
-  <h2 class="section-title about-title">About the Film</h2>
+<section class="about">
+  <h2 class="section-kicker">About the Film</h2>
   <div class="about-grid">
     <div class="about-copy">
       <img class="torn" src="Appetite_Torn%20Paper%201.png.avif" alt="">
@@ -129,26 +386,50 @@ a{color:inherit}
       <p>Spanning a supernaturally long timeline, the story oscillates between her present life and the world she came from centuries ago. As the consequences of a single desperate bargain echo forward in time, we watch helplessly as our protagonist faces off against her.</p>
       <p>Exploring her past and present, we unravel the rich backstory driving our femme fatale’s choices, taking the audience on a journey to answer this: “When do good intentions no longer absolve us?”</p>
     </div>
-    <img class="about-photo" src="Appetite%202.png.avif" alt="">
+    <div class="about-visual">
+      <div class="hands-frame">
+        <img id="handsImage" src="Appetite%202.png.avif" alt="">
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="concept">
-  <h2 class="section-title">Concept Art</h2>
-  <div class="gallery">
-    <img src="Appetite_Beat_First%20Date.png" alt="Appetite concept art">
-    <img src="Appetite_Beat_Homestead.png" alt="Appetite concept art">
-    <img src="Appetite_Beat_Possession.png" alt="Appetite concept art">
-    <img src="Appetite_Beat_Ritual.png" alt="Appetite concept art">
+  <h2 class="section-kicker">Concept Art</h2>
+  <div class="carousel-shell">
+    <div class="carousel" id="conceptCarousel">
+      <img src="Appetite_Beat_First%20Date.png" alt="Appetite concept art">
+      <img src="Appetite_Beat_Homestead.png" alt="Appetite concept art">
+      <img src="Appetite_Beat_Possession.png" alt="Appetite concept art">
+      <img src="Appetite_Beat_Ritual.png" alt="Appetite concept art">
+      <img src="Appetite_Beat_First%20Date.png" alt="" aria-hidden="true">
+      <img src="Appetite_Beat_Homestead.png" alt="" aria-hidden="true">
+      <img src="Appetite_Beat_Possession.png" alt="" aria-hidden="true">
+      <img src="Appetite_Beat_Ritual.png" alt="" aria-hidden="true">
+    </div>
   </div>
 </section>
 
 <section class="help">
-  <h2 class="section-title">Want to Help?</h2>
-  <div class="help-row"><span class="num">01</span><span class="help-text"><a href="https://www.gofundme.com/f/Expand-the-world-of-appetite" target="_blank" rel="noopener">Donate $</a></span></div>
-  <div class="help-row"><span class="num">02</span><span class="help-text">Donate Time:<br>Professionals,<br>and Volunteers</span></div>
-  <div class="help-row"><span class="num">03</span><span class="help-text">Donate Resources:<br>Locations, Props,<br>Equipment</span></div>
-  <div class="help-row"><span class="num">04</span><span class="help-text">Share the Word</span></div>
+  <h2 class="section-kicker">Want to Help?</h2>
+  <div class="help-grid">
+    <a class="help-card link" href="https://www.gofundme.com/f/Expand-the-world-of-appetite" target="_blank" rel="noopener">
+      <h3>Donate Funds</h3>
+      <p>Help support the production.</p>
+    </a>
+    <div class="help-card">
+      <h3>Join the Team</h3>
+      <p>Professionals and volunteers.</p>
+    </div>
+    <div class="help-card">
+      <h3>Donate Resources</h3>
+      <p>Locations, props, equipment and other production needs.</p>
+    </div>
+    <div class="help-card">
+      <h3>Share the Film</h3>
+      <p>Help us spread the word.</p>
+    </div>
+  </div>
 </section>
 
 <section class="production">
@@ -157,6 +438,7 @@ a{color:inherit}
     <h2>Filming in<br>Early 2027</h2>
     <p>With our feature length script completed, we are deep in the pre-production process actively recruiting team-members, costuming, and locking in locations.</p>
   </div>
+
   <h2 class="stay">Stay Connected</h2>
   <div class="links">
     <a href="https://www.instagram.com/appetitefilm/" target="_blank" rel="noopener">Follow Us Online</a>
@@ -164,6 +446,67 @@ a{color:inherit}
     <a href="https://www.gofundme.com/f/Expand-the-world-of-appetite" target="_blank" rel="noopener">Donate Funds</a>
   </div>
 </section>
+
+<script>
+/* subtle desktop parallax for hands image */
+const hands = document.getElementById('handsImage');
+function updateParallax(){
+  if (window.innerWidth <= 760) {
+    hands.style.transform = 'none';
+    return;
+  }
+  const rect = hands.parentElement.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const progress = (vh - rect.top) / (vh + rect.height);
+  const clamped = Math.max(0, Math.min(1, progress));
+  const offset = -8 + clamped * 16;
+  hands.style.transform = `translateY(${offset}%)`;
+}
+window.addEventListener('scroll', updateParallax, {passive:true});
+window.addEventListener('resize', updateParallax);
+updateParallax();
+
+/* draggable + auto-scrolling concept art */
+const carousel = document.getElementById('conceptCarousel');
+let dragging = false;
+let startX = 0;
+let startScroll = 0;
+let pausedUntil = 0;
+
+carousel.addEventListener('pointerdown', e => {
+  dragging = true;
+  startX = e.clientX;
+  startScroll = carousel.scrollLeft;
+  pausedUntil = Date.now() + 3500;
+  carousel.setPointerCapture(e.pointerId);
+});
+carousel.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  carousel.scrollLeft = startScroll - (e.clientX - startX);
+});
+carousel.addEventListener('pointerup', e => {
+  dragging = false;
+  pausedUntil = Date.now() + 3500;
+  try { carousel.releasePointerCapture(e.pointerId); } catch {}
+});
+carousel.addEventListener('pointercancel', () => {
+  dragging = false;
+  pausedUntil = Date.now() + 3500;
+});
+carousel.addEventListener('wheel', () => pausedUntil = Date.now() + 3500, {passive:true});
+carousel.addEventListener('touchstart', () => pausedUntil = Date.now() + 3500, {passive:true});
+
+function autoScroll(){
+  if (!dragging && Date.now() > pausedUntil) {
+    carousel.scrollLeft += 0.45;
+    if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
+      carousel.scrollLeft -= carousel.scrollWidth / 2;
+    }
+  }
+  requestAnimationFrame(autoScroll);
+}
+autoScroll();
+</script>
 
 </body>
 </html>
