@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>APPETITE</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap');
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:#000;color:#fff;font-family:"DM Sans",Arial,sans-serif;font-weight:300}
@@ -15,498 +14,190 @@ a{color:inherit}
 h1,h2,h3,.serif{font-family:"Playfair Display",Georgia,serif;font-weight:400}
 .wrap{width:min(92%,1450px);margin:auto}
 
-/* HERO */
-.hero{
-  min-height:100svh;
-  background:url("Header%20Image.png") center 35%/cover no-repeat;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
-.hero:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.12) 55%,rgba(0,0,0,.72));
-}
-.hero-inner{position:relative;z-index:1;margin-top:28vh}
-.hero h1{
-  font-size:clamp(64px,10vw,150px);
-  line-height:.86;
-  margin:0 0 22px;
-  letter-spacing:-.045em;
-}
-.button{
-  display:inline-block;
-  border:1px solid #fff;
-  padding:17px 48px;
-  text-decoration:none;
-  font-size:19px;
-  transition:.2s ease;
-}
+/* HERO — currently uses poster; ready for Header Video.mp4 */
+.hero{height:100svh;min-height:620px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;background:#000}
+.hero-media{position:absolute;inset:0}
+.hero-media video,.hero-media .hero-poster{width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.hero-media .hero-poster{position:absolute;inset:0}
+.hero-media video{position:absolute;inset:0;z-index:1}
+.hero-overlay{position:absolute;z-index:2;inset:0;background:
+  radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.22) 75%,rgba(0,0,0,.55) 100%),
+  linear-gradient(to bottom,rgba(0,0,0,.12) 0%,transparent 35%,rgba(0,0,0,.15) 70%,#000 100%)}
+.hero-inner{position:relative;z-index:3;margin-top:28vh;animation:heroIn 2s ease both}
+@keyframes heroIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero h1{font-size:clamp(64px,10vw,150px);line-height:.86;margin:0 0 22px;letter-spacing:-.045em}
+.button{display:inline-block;border:1px solid #fff;padding:17px 48px;text-decoration:none;font-size:19px;transition:.25s ease}
 .button:hover{background:#fff;color:#000}
 
-/* SMALL SECTION HEADINGS */
-.section-kicker{
-  font-size:clamp(34px,3.5vw,56px);
-  line-height:1;
-  letter-spacing:-.035em;
-  text-align:center;
-  margin:0;
-}
+.section-kicker{font-size:clamp(32px,3vw,48px);line-height:1;letter-spacing:-.035em;text-align:center;margin:0}
 
 /* TRAILER */
-.trailer{padding:46px 0 84px}
-.trailer .section-kicker{margin-bottom:22px}
-.video{
-  width:min(100%,1100px);
-  aspect-ratio:16/9;
-  margin:auto;
-  overflow:hidden;
-  background:#111;
-}
-.video iframe{
-  width:100%;
-  height:100%;
-  border:0;
-}
+.trailer{padding:28px 0 80px}
+.trailer .section-kicker{margin-bottom:18px}
+.video-clean{width:min(100%,1100px);aspect-ratio:16/9;margin:auto;position:relative;background:#090909;overflow:hidden;cursor:pointer}
+.video-clean img{width:100%;height:100%;object-fit:cover}
+.video-clean .shade{position:absolute;inset:0;background:rgba(0,0,0,.08);transition:.25s}
+.video-clean:hover .shade{background:rgba(0,0,0,.18)}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border:2px solid #fff;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.25);transition:.25s}
+.play:after{content:"";margin-left:7px;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #fff}
+.video-clean:hover .play{transform:translate(-50%,-50%) scale(1.06)}
+.video-clean iframe{width:100%;height:100%;border:0}
 
 /* ABOUT */
-.about{padding:14px 0 100px}
-.about .section-kicker{margin-bottom:42px}
-.about-grid{
-  width:min(94%,1450px);
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:7vw;
-  align-items:start;
-}
-.about-copy{
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-.about-copy .torn{
-  width:min(82%,560px);
-  margin-bottom:42px;
-}
-.tagline{
-  font-family:"Playfair Display",Georgia,serif;
-  font-size:clamp(26px,2.3vw,42px);
-  line-height:1.3;
-  margin:0 0 34px;
-}
-.about-copy p{
-  font-size:clamp(16px,1.18vw,20px);
-  line-height:1.6;
-  max-width:650px;
-  margin:0 0 25px;
-}
-.about-visual{
-  display:flex;
-  justify-content:center;
-  padding-top:58px;
-}
-.hands-frame{
-  width:min(88%,620px);
-  height:min(72vh,760px);
-  overflow:hidden;
-  position:relative;
-}
-.hands-frame img{
-  width:100%;
-  height:118%;
-  object-fit:cover;
-  object-position:center;
-  transform:translateY(-5%);
-  will-change:transform;
-}
+.about{padding:10px 0 105px}
+.about .section-kicker{margin-bottom:40px}
+.about-grid{width:min(94%,1450px);margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:start}
+.about-copy{text-align:center;display:flex;flex-direction:column;align-items:center}
+.about-copy .torn{width:min(82%,560px);margin-bottom:42px}
+.tagline{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:clamp(32px,2.8vw,49px);line-height:1.22;margin:0 0 38px}
+.about-copy p{font-size:clamp(16px,1.18vw,20px);line-height:1.6;max-width:650px;margin:0 0 25px}
+.about-visual{padding-top:20px}
+.hands-window{height:760px;max-height:78vh;min-height:580px;overflow:hidden;position:relative;width:100%}
+.hands-window img{position:absolute;left:0;top:-10%;width:100%;height:120%;max-width:none;object-fit:cover;object-position:center center;will-change:transform}
 
-/* CONCEPT ART */
-.concept{padding:58px 0 100px}
-.concept .section-kicker{margin-bottom:34px}
-.carousel-shell{
-  overflow:hidden;
-  width:100%;
-  position:relative;
-}
-.carousel{
-  display:flex;
-  gap:20px;
-  overflow-x:auto;
-  scroll-behavior:smooth;
-  cursor:grab;
-  user-select:none;
-  padding:0 4vw 18px;
-  scrollbar-width:none;
-}
+/* CONCEPT */
+.concept{padding:45px 0 100px;overflow:hidden}
+.concept .section-kicker{margin-bottom:32px}
+.carousel{display:flex;gap:24px;overflow-x:auto;padding:0 6vw 18px;cursor:grab;user-select:none;scrollbar-width:none;overscroll-behavior-x:contain}
 .carousel::-webkit-scrollbar{display:none}
 .carousel:active{cursor:grabbing}
-.carousel img{
-  flex:0 0 min(68vw,760px);
-  height:min(72vh,720px);
-  object-fit:cover;
-  background:#111;
-  pointer-events:none;
-}
+.carousel img{flex:0 0 330px;width:330px;height:330px;object-fit:cover;pointer-events:none}
 
-/* WANT TO HELP */
-.help{padding:70px 0 125px}
-.help .section-kicker{margin-bottom:42px}
-.help-grid{
-  width:min(92%,1250px);
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-.help-card{
-  border:1px solid rgba(255,255,255,.35);
-  padding:30px 30px 34px;
-  min-height:190px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.help-card h3{
-  font-size:clamp(30px,3vw,48px);
-  line-height:1.05;
-  margin:0 0 20px;
-}
-.help-card p{
-  margin:0;
-  font-size:17px;
-  line-height:1.5;
-  color:rgba(255,255,255,.8);
-}
-.help-card a{
-  text-decoration:none;
-}
-.help-card.link:hover{
-  background:#fff;
-  color:#000;
-}
+/* HELP */
+.help{padding:65px 0 120px}
+.help .section-kicker{margin-bottom:40px}
+.help-grid{width:min(92%,1250px);margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.help-card{border:1px solid rgba(255,255,255,.35);padding:30px 30px 34px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between}
+.help-card h3{font-size:clamp(30px,3vw,48px);line-height:1.05;margin:0 0 20px}
+.help-card p{margin:0;font-size:17px;line-height:1.5;color:rgba(255,255,255,.8)}
+.help-card a{text-decoration:none}
+.help-card.link:hover{background:#fff;color:#000}
 .help-card.link:hover p{color:#000}
 
 /* PRODUCTION */
-.production{
-  min-height:860px;
-  padding:70px 3vw 50px;
-  display:grid;
-  grid-template-columns:1fr 1.7fr;
-  grid-template-rows:auto 1fr auto;
-  column-gap:6vw;
-}
-.team-photo{
-  width:100%;
-  max-width:620px;
-  align-self:start;
-}
-.production-copy{
-  padding-top:52px;
-  max-width:760px;
-}
-.production-copy h2{
-  font-size:clamp(58px,6vw,100px);
-  line-height:.92;
-  letter-spacing:-.055em;
-  margin:0 0 38px;
-}
-.production-copy p{
-  font-size:clamp(17px,1.35vw,22px);
-  line-height:1.6;
-  margin:0;
-}
-.stay{
-  grid-column:1/2;
-  align-self:end;
-  font-size:clamp(58px,6vw,100px);
-  line-height:.9;
-  letter-spacing:-.055em;
-  margin:0;
-}
-.links{
-  grid-column:2/3;
-  align-self:end;
-  font-size:17px;
-  line-height:2;
-}
-.links a{
-  display:block;
-  width:max-content;
-  text-underline-offset:4px;
-}
-.links .plain{display:block}
+.production{min-height:860px;padding:70px 3vw 50px;display:grid;grid-template-columns:1fr 1.7fr;grid-template-rows:auto 1fr auto;column-gap:6vw}
+.team-photo{width:100%;max-width:620px;align-self:start}
+.production-copy{padding-top:52px;max-width:760px}
+.production-copy h2{font-size:clamp(58px,6vw,100px);line-height:1.02;letter-spacing:-.055em;margin:0 0 38px}
+.production-copy p{font-size:clamp(17px,1.35vw,22px);line-height:1.6;margin:0}
+.stay{grid-column:1/2;align-self:end;font-size:clamp(58px,6vw,100px);line-height:.95;letter-spacing:-.055em;margin:0}
+.links{grid-column:2/3;align-self:end;font-size:17px;line-height:2}
+.links a{display:block;width:max-content;text-underline-offset:4px}.links .plain{display:block}
 
-/* MOBILE */
 @media(max-width:760px){
-  .hero{
-    min-height:92svh;
-    background-position:center top;
-  }
-  .hero-inner{margin-top:32vh}
-  .hero h1{font-size:68px;margin-bottom:18px}
-  .button{font-size:17px;padding:15px 38px}
-
-  .trailer{padding:28px 0 58px}
-  .section-kicker{font-size:38px}
-  .trailer .section-kicker{margin-bottom:16px}
-
-  .about{padding:0 0 65px}
-  .about .section-kicker{margin-bottom:28px}
-  .about-grid{
-    display:flex;
-    flex-direction:column;
-    gap:0;
-  }
-  .about-copy{
-    padding:0 5vw 38px;
-  }
-  .about-copy .torn{
-    width:88%;
-    margin-bottom:32px;
-  }
-  .tagline{
-    font-size:28px;
-    margin-bottom:32px;
-  }
-  .about-copy p{
-    font-size:17px;
-    line-height:1.56;
-    margin-bottom:24px;
-  }
-  .about-visual{
-    padding-top:0;
-  }
-  .hands-frame{
-    width:100%;
-    height:auto;
-    overflow:hidden;
-  }
-  .hands-frame img{
-    width:100%;
-    height:auto;
-    transform:none !important;
-  }
-
-  .concept{padding:38px 0 70px}
-  .concept .section-kicker{margin-bottom:24px}
-  .carousel{
-    gap:14px;
-    padding:0 5vw 12px;
-  }
-  .carousel img{
-    flex-basis:84vw;
-    height:auto;
-    max-height:none;
-  }
-
-  .help{padding:48px 0 86px}
-  .help .section-kicker{margin-bottom:28px}
-  .help-grid{
-    grid-template-columns:1fr;
-    gap:14px;
-  }
-  .help-card{
-    min-height:0;
-    padding:24px;
-  }
-  .help-card h3{
-    font-size:34px;
-    margin-bottom:10px;
-  }
-  .help-card p{
-    font-size:16px;
-  }
-
-  .production{
-    min-height:0;
-    padding:48px 6vw 80px;
-    display:flex;
-    flex-direction:column;
-  }
-  .production-copy{
-    order:1;
-    padding:0 0 36px;
-  }
-  .production-copy h2{
-    font-size:58px;
-    line-height:1.02;
-    margin-bottom:25px;
-  }
-  .production-copy p{font-size:17px}
-  .team-photo{
-    order:2;
-    margin-bottom:70px;
-  }
-  .stay{
-    order:3;
-    font-size:58px;
-    margin-bottom:38px;
-  }
-  .links{
-    order:4;
-    font-size:17px;
-  }
+ .hero{height:92svh;min-height:560px}.hero-media video,.hero-media .hero-poster{object-position:center top}.hero-inner{margin-top:32vh}.hero h1{font-size:68px;margin-bottom:18px}.button{font-size:17px;padding:15px 38px}
+ .trailer{padding:20px 0 55px}.section-kicker{font-size:36px}.trailer .section-kicker{margin-bottom:14px}.play{width:68px;height:68px}
+ .about{padding:0 0 65px}.about .section-kicker{margin-bottom:27px}.about-grid{display:flex;flex-direction:column;gap:0}.about-copy{padding:0 5vw 38px}.about-copy .torn{width:88%;margin-bottom:30px}.tagline{font-size:32px;line-height:1.22;margin-bottom:32px}.about-copy p{font-size:17px;line-height:1.56;margin-bottom:24px}
+ .about-visual{padding:0;width:100%}.hands-window{height:auto;min-height:0;max-height:none}.hands-window img{position:static;width:100%;height:auto;transform:none!important;object-fit:contain}
+ .concept{padding:36px 0 70px}.concept .section-kicker{margin-bottom:22px}.carousel{gap:14px;padding:0 5vw 12px}.carousel img{flex-basis:62vw;width:62vw;height:62vw}
+ .help{padding:48px 0 86px}.help .section-kicker{margin-bottom:28px}.help-grid{grid-template-columns:1fr;gap:14px}.help-card{min-height:0;padding:24px}.help-card h3{font-size:34px;margin-bottom:10px}.help-card p{font-size:16px}
+ .production{min-height:0;padding:48px 6vw 80px;display:flex;flex-direction:column}.production-copy{order:1;padding:0 0 36px}.production-copy h2{font-size:58px;line-height:1.08;margin-bottom:25px}.production-copy p{font-size:17px}.team-photo{order:2;margin-bottom:70px}.stay{order:3;font-size:58px;margin-bottom:38px}.links{order:4;font-size:17px}
 }
 </style>
 </head>
 <body>
-
 <header class="hero">
-  <div class="hero-inner">
-    <h1>APPETITE</h1>
-    <a class="button" href="https://www.gofundme.com/f/Expand-the-world-of-appetite" target="_blank" rel="noopener">Support the Film</a>
-  </div>
+ <div class="hero-media">
+   <img class="hero-poster" src="Header%20Image.png" alt="">
+   <!-- If you upload a file named Header Video.mp4, uncomment the next line:
+   <video autoplay muted loop playsinline poster="Header%20Image.png"><source src="Header%20Video.mp4" type="video/mp4"></video>
+   -->
+ </div>
+ <div class="hero-overlay"></div>
+ <div class="hero-inner"><h1>APPETITE</h1><a class="button" href="https://www.gofundme.com/f/Expand-the-world-of-appetite" target="_blank" rel="noopener">Support the Film</a></div>
 </header>
 
 <section class="trailer wrap">
-  <h2 class="section-kicker">Watch Our Teaser</h2>
-  <div class="video">
-    <iframe
-      src="https://www.youtube.com/embed/mewzo3Dq-bE?start=2&rel=0&modestbranding=1&playsinline=1"
-      title="Appetite teaser"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-  </div>
+ <h2 class="section-kicker">Watch Our Teaser</h2>
+ <div class="video-clean" id="teaser" role="button" tabindex="0" aria-label="Play Appetite teaser">
+   <img src="https://i.ytimg.com/vi/mewzo3Dq-bE/maxresdefault.jpg" alt="Appetite teaser">
+   <div class="shade"></div><div class="play"></div>
+ </div>
 </section>
 
 <section class="about">
-  <h2 class="section-kicker">About the Film</h2>
-  <div class="about-grid">
-    <div class="about-copy">
-      <img class="torn" src="Appetite_Torn%20Paper%201.png.avif" alt="">
-      <p class="tagline">The road to hell is paved<br>with good intentions.</p>
-      <p>When a grief stricken young wife on the western frontier succumbs to an otherworldly evil, she is forced to confront what she’s become.</p>
-      <p>Spanning a supernaturally long timeline, the story oscillates between her present life and the world she came from centuries ago. As the consequences of a single desperate bargain echo forward in time, we watch helplessly as our protagonist faces off against her.</p>
-      <p>Exploring her past and present, we unravel the rich backstory driving our femme fatale’s choices, taking the audience on a journey to answer this: “When do good intentions no longer absolve us?”</p>
-    </div>
-    <div class="about-visual">
-      <div class="hands-frame">
-        <img id="handsImage" src="Appetite%202.png.avif" alt="">
-      </div>
-    </div>
+ <h2 class="section-kicker">About the Film</h2>
+ <div class="about-grid">
+  <div class="about-copy">
+   <img class="torn" src="Appetite_Torn%20Paper%201.png.avif" alt="">
+   <p class="tagline">The road to hell is paved<br>with good intentions.</p>
+   <p>When a grief stricken young wife on the western frontier succumbs to an otherworldly evil, she is forced to confront what she’s become.</p>
+   <p>Spanning a supernaturally long timeline, the story oscillates between her present life and the world she came from centuries ago. As the consequences of a single desperate bargain echo forward in time, we watch helplessly as our protagonist faces off against her.</p>
+   <p>Exploring her past and present, we unravel the rich backstory driving our femme fatale’s choices, taking the audience on a journey to answer this: “When do good intentions no longer absolve us?”</p>
   </div>
+  <div class="about-visual"><div class="hands-window"><img id="handsImage" src="Appetite%202.png.avif" alt=""></div></div>
+ </div>
 </section>
 
 <section class="concept">
-  <h2 class="section-kicker">Concept Art</h2>
-  <div class="carousel-shell">
-    <div class="carousel" id="conceptCarousel">
-      <img src="Appetite_Beat_First%20Date.png" alt="Appetite concept art">
-      <img src="Appetite_Beat_Homestead.png" alt="Appetite concept art">
-      <img src="Appetite_Beat_Possession.png" alt="Appetite concept art">
-      <img src="Appetite_Beat_Ritual.png" alt="Appetite concept art">
-      <img src="Appetite_Beat_First%20Date.png" alt="" aria-hidden="true">
-      <img src="Appetite_Beat_Homestead.png" alt="" aria-hidden="true">
-      <img src="Appetite_Beat_Possession.png" alt="" aria-hidden="true">
-      <img src="Appetite_Beat_Ritual.png" alt="" aria-hidden="true">
-    </div>
-  </div>
+ <h2 class="section-kicker">Concept Art</h2>
+ <div class="carousel" id="conceptCarousel">
+  <img src="Appetite_Beat_First%20Date.png" alt="Concept art">
+  <img src="Appetite_Beat_Homestead.png" alt="Concept art">
+  <img src="Appetite_Beat_Possession.png" alt="Concept art">
+  <img src="Appetite_Beat_Ritual.png" alt="Concept art">
+  <img src="Appetite_Beat_First%20Date.png" alt="" aria-hidden="true">
+  <img src="Appetite_Beat_Homestead.png" alt="" aria-hidden="true">
+  <img src="Appetite_Beat_Possession.png" alt="" aria-hidden="true">
+  <img src="Appetite_Beat_Ritual.png" alt="" aria-hidden="true">
+ </div>
 </section>
 
 <section class="help">
-  <h2 class="section-kicker">Want to Help?</h2>
-  <div class="help-grid">
-    <a class="help-card link" href="https://www.gofundme.com/f/Expand-the-world-of-appetite" target="_blank" rel="noopener">
-      <h3>Donate Funds</h3>
-      <p>Help support the production.</p>
-    </a>
-    <div class="help-card">
-      <h3>Join the Team</h3>
-      <p>Professionals and volunteers.</p>
-    </div>
-    <div class="help-card">
-      <h3>Donate Resources</h3>
-      <p>Locations, props, equipment and other production needs.</p>
-    </div>
-    <div class="help-card">
-      <h3>Share the Film</h3>
-      <p>Help us spread the word.</p>
-    </div>
-  </div>
+ <h2 class="section-kicker">Want to Help?</h2>
+ <div class="help-grid">
+  <a class="help-card link" href="https://www.gofundme.com/f/Expand-the-world-of-appetite" target="_blank" rel="noopener"><h3>Donate Funds</h3><p>Help support the production.</p></a>
+  <div class="help-card"><h3>Join the Team</h3><p>Professionals and volunteers.</p></div>
+  <div class="help-card"><h3>Donate Resources</h3><p>Locations, props, equipment and other production needs.</p></div>
+  <div class="help-card"><h3>Share the Film</h3><p>Help us spread the word.</p></div>
+ </div>
 </section>
 
 <section class="production">
-  <img class="team-photo" src="Appetite%20Team%20with%20Script_2.png.avif" alt="Appetite film team">
-  <div class="production-copy">
-    <h2>Filming in<br>Early 2027</h2>
-    <p>With our feature length script completed, we are deep in the pre-production process actively recruiting team-members, costuming, and locking in locations.</p>
-  </div>
-
-  <h2 class="stay">Stay Connected</h2>
-  <div class="links">
-    <a href="https://www.instagram.com/appetitefilm/" target="_blank" rel="noopener">Follow Us Online</a>
-    <span class="plain">Email Us: Cast, Crew, Volunteers</span>
-    <a href="https://www.gofundme.com/f/Expand-the-world-of-appetite" target="_blank" rel="noopener">Donate Funds</a>
-  </div>
+ <img class="team-photo" src="Appetite%20Team%20with%20Script_2.png.avif" alt="Appetite film team">
+ <div class="production-copy"><h2>Filming in<br>Early 2027</h2><p>With our feature length script completed, we are deep in the pre-production process actively recruiting team-members, costuming, and locking in locations.</p></div>
+ <h2 class="stay">Stay Connected</h2>
+ <div class="links"><a href="https://www.instagram.com/appetitefilm/" target="_blank" rel="noopener">Follow Us Online</a><span class="plain">Email Us: Cast, Crew, Volunteers</span><a href="https://www.gofundme.com/f/Expand-the-world-of-appetite" target="_blank" rel="noopener">Donate Funds</a></div>
 </section>
 
 <script>
-/* subtle desktop parallax for hands image */
-const hands = document.getElementById('handsImage');
-function updateParallax(){
-  if (window.innerWidth <= 760) {
-    hands.style.transform = 'none';
-    return;
-  }
-  const rect = hands.parentElement.getBoundingClientRect();
-  const vh = window.innerHeight;
-  const progress = (vh - rect.top) / (vh + rect.height);
-  const clamped = Math.max(0, Math.min(1, progress));
-  const offset = -8 + clamped * 16;
-  hands.style.transform = `translateY(${offset}%)`;
+/* Clean teaser facade: YouTube UI doesn't exist until play is clicked */
+const teaser=document.getElementById('teaser');
+function playTeaser(){
+ teaser.innerHTML='<iframe src="https://www.youtube.com/embed/mewzo3Dq-bE?autoplay=1&start=2&rel=0&playsinline=1" title="Appetite teaser" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
 }
-window.addEventListener('scroll', updateParallax, {passive:true});
-window.addEventListener('resize', updateParallax);
-updateParallax();
+teaser.addEventListener('click',playTeaser,{once:true});
+teaser.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();playTeaser()}});
 
-/* draggable + auto-scrolling concept art */
-const carousel = document.getElementById('conceptCarousel');
-let dragging = false;
-let startX = 0;
-let startScroll = 0;
-let pausedUntil = 0;
-
-carousel.addEventListener('pointerdown', e => {
-  dragging = true;
-  startX = e.clientX;
-  startScroll = carousel.scrollLeft;
-  pausedUntil = Date.now() + 3500;
-  carousel.setPointerCapture(e.pointerId);
-});
-carousel.addEventListener('pointermove', e => {
-  if (!dragging) return;
-  carousel.scrollLeft = startScroll - (e.clientX - startX);
-});
-carousel.addEventListener('pointerup', e => {
-  dragging = false;
-  pausedUntil = Date.now() + 3500;
-  try { carousel.releasePointerCapture(e.pointerId); } catch {}
-});
-carousel.addEventListener('pointercancel', () => {
-  dragging = false;
-  pausedUntil = Date.now() + 3500;
-});
-carousel.addEventListener('wheel', () => pausedUntil = Date.now() + 3500, {passive:true});
-carousel.addEventListener('touchstart', () => pausedUntil = Date.now() + 3500, {passive:true});
-
-function autoScroll(){
-  if (!dragging && Date.now() > pausedUntil) {
-    carousel.scrollLeft += 0.45;
-    if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-      carousel.scrollLeft -= carousel.scrollWidth / 2;
-    }
-  }
-  requestAnimationFrame(autoScroll);
+/* Desktop parallax: large image moves behind a fixed crop */
+const hands=document.getElementById('handsImage');
+function parallax(){
+ if(innerWidth<=760){hands.style.transform='none';return}
+ const win=hands.parentElement.getBoundingClientRect();
+ const progress=(innerHeight-win.top)/(innerHeight+win.height);
+ const p=Math.max(0,Math.min(1,progress));
+ hands.style.transform=`translateY(${(-5+p*10)}%)`;
 }
-autoScroll();
+addEventListener('scroll',parallax,{passive:true});addEventListener('resize',parallax);parallax();
+
+/* Concept art: continuous auto-scroll, mouse/trackpad/touch override */
+const c=document.getElementById('conceptCarousel');
+let drag=false,sx=0,ss=0,pause=0;
+function pauseAuto(){pause=Date.now()+3000}
+c.addEventListener('pointerdown',e=>{drag=true;sx=e.clientX;ss=c.scrollLeft;pauseAuto();c.setPointerCapture(e.pointerId)});
+c.addEventListener('pointermove',e=>{if(drag)c.scrollLeft=ss-(e.clientX-sx)});
+c.addEventListener('pointerup',()=>{drag=false;pauseAuto()});
+c.addEventListener('pointercancel',()=>{drag=false;pauseAuto()});
+c.addEventListener('wheel',e=>{pauseAuto();if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){c.scrollLeft+=e.deltaY}}, {passive:true});
+c.addEventListener('touchstart',pauseAuto,{passive:true});
+function scrollArt(){
+ if(!drag&&Date.now()>pause){
+   c.scrollLeft+=.35;
+   if(c.scrollLeft>=c.scrollWidth/2)c.scrollLeft-=c.scrollWidth/2;
+ }
+ requestAnimationFrame(scrollArt)
+}
+scrollArt();
 </script>
-
 </body>
 </html>
